@@ -21,4 +21,8 @@ public class User {
         this.nome = nome;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "nome=" + nome + '}';
+    }
 }
