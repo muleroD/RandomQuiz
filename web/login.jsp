@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 25/04/2019, 10:04:07
+    Document   : login
+    Created on : 28/04/2019, 13:23:03
     Author     : Mulero
 --%>
 
@@ -9,13 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home - RandomQuiz</title>
+        <title>Login - RandomQuiz</title>
     </head>
     <body>
-        <h1>Random Quiz</h1>
-
-        <!--Apresentar uma tabela com os ultimos 10 testes-->
-
-
+        <h1>Hello World!</h1>
     </body>
 </html>

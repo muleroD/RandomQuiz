@@ -22,4 +22,12 @@ public class Database {
         return usuarios;
     }
 
+    public static ArrayList<Question> getMathQuiz() {
+        ArrayList<Question> quiz = new ArrayList<>();
+        quiz.add(new Question("1+1", "2", new String[]{"3", "1", "2"}));
+        quiz.add(new Question("2+2", "4", new String[]{"4", "2", "1"}));
+        quiz.add(new Question("2+1", "3", new String[]{"1", "3", "4"}));
+
+        return quiz;
+    }
 }
