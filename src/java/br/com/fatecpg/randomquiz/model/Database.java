@@ -15,9 +15,13 @@ public class Database {
 
     private static ArrayList<User> usuarios;
 
-    public static ArrayList<User> getUsuarios() {
+    public static ArrayList<User> getUsers() {
         if (usuarios == null) {
             usuarios = new ArrayList<>();
+
+            User u1 = new User();
+            u1.setNome("Richard");
+            usuarios.add(u1);
         }
         return usuarios;
     }
