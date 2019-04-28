@@ -5,6 +5,23 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    String usuario = "";
+    HttpSession sessao = request.getSession();
+
+    if (sessao.getAttribute("usuarioLogado") == null) {
+        response.sendRedirect("login.jsp");
+    } else {
+        usuario = sessao.getAttribute("usuarioLogado").toString();
+    }
+
+    if (request.getParameter("btnLogout") != null) {
+        sessao.invalidate();
+        response.sendRedirect("login.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,9 +30,10 @@
     </head>
     <body>
         <h1>Random Quiz</h1>
+        <h2>Bem vindo <%=usuario%></h2>
 
         <!--Apresentar uma tabela com os ultimos 10 testes-->
 
-
+        <form><input type="submit" name="btnLogout" value="Sair"/></form>
     </body>
 </html>
