@@ -45,4 +45,8 @@ public class Question {
         this.alternatives = alternatives;
     }
 
+    public boolean validaAlternatives(int i) {
+        return alternatives[i].equals(answer);
+    }
+
 }
