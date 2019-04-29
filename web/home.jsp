@@ -9,13 +9,13 @@
 <%
     String usuario = "";
     HttpSession sessao = request.getSession();
-    
+
     if (sessao.getAttribute("usuarioLogado") == null) {
         response.sendRedirect("login.jsp");
     } else {
         usuario = sessao.getAttribute("usuarioLogado").toString();
     }
-    
+
     if (request.getParameter("btnLogout") != null) {
         response.sendRedirect("logout.jsp");
     }
@@ -24,6 +24,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home - RandomQuiz</title>
     </head>
