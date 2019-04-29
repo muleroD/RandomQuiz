@@ -9,16 +9,15 @@
 <%
     String usuario = "";
     HttpSession sessao = request.getSession();
-
+    
     if (sessao.getAttribute("usuarioLogado") == null) {
         response.sendRedirect("login.jsp");
     } else {
         usuario = sessao.getAttribute("usuarioLogado").toString();
     }
-
+    
     if (request.getParameter("btnLogout") != null) {
-        sessao.invalidate();
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("logout.jsp");
     }
 %>
 
