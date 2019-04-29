@@ -22,6 +22,10 @@ public class Database {
             User u1 = new User();
             u1.setNome("Richard");
             usuarios.add(u1);
+            
+            User u2 = new User();
+            u2.setNome("José");
+            usuarios.add(u2);
         }
         return usuarios;
     }
