@@ -42,7 +42,7 @@ public class Database {
        quiz.add(new Question("Qual a velocidade da luz no vácuo em m/s ?", "299 792 458", new String[]{"301 458 678", "196 234 129", "396 128 987", "299 792 458" }));
         quiz.add(new Question("Segundo o Físico Isaac Newton, quais dessas grandezas fundamentais é diretamente proporcional à lei da Inércia ?", "Massa",  new String[]{"Massa", "Comprimento", "Tempo", "Temperatura"}));
         quiz.add(new Question("Acreditava-se que nada era capaz de fugir das forças de atração de um buraco negro, até que 1974 Stephen Hawking provou que é possível extrair informações de dentro dele por meio de que meio ?", "Radiação", new String[]{"Radiação", "Luz", "Calor", "Gravidade"}));
-        quiz.add(new Question("Força que se apresenta perendicular a superfícei de contato, também conhecida como força de apoio", "Normal", new String[]{"Absoluta", "Normal", "Gravitacional", "Atrito" }));
+        quiz.add(new Question("Força que se apresenta perpendicular a superfícei de contato, também conhecida como força de apoio", "Normal", new String[]{"Absoluta", "Normal", "Gravitacional", "Atrito" }));
         quiz.add(new Question("Semicondutor utilizado como componente eletrônico...", "Diodo", new String[]{"Pastilha eletrolitica", "Piezoelétrico", "Resistência", "Diodo" }));
         quiz.add(new Question("Elemento químico utilizado para medição da passagem de tempo...", "Carbono", new String[]{"Oxigênio", "Hidrogênio", "Carbono", "Nitrogênio" }));
         quiz.add(new Question("Lei da física relacionada à elasticidade de um corpo...", "!", new String[]{"Lei de Einsten", "Lei de Pascal", "lei de Hooke", "Lei da Gravidade" }));
