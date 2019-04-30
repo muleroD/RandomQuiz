@@ -12,6 +12,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+    String usuario = "";
+    if (session.getAttribute("usuarioLogado") == null) {
+        response.sendRedirect("login.jsp");
+    } else {
+        usuario = session.getAttribute("usuarioLogado").toString();
+    }
+    
+    
+    
     try {
         if (request.getParameter("teste") != null) {
             //para o quiz
@@ -31,13 +40,12 @@
             String nome = request.getParameter("nomeUsuario");
 
             //criando jogador
-                       
             User u = new User(nome);
             u.setNome(nome);
 
             //criando pontuaçao
             Pontuacao pontuacao = new Pontuacao();
-            
+
             pontuacao.setPontuacao(pontuacaouser);
             Pontuacao.ranking.add(pontuacao);
 
@@ -55,26 +63,26 @@
     <body>
         <h1>prova</h1>
         <h2>Teste</h2>
-        
+
         <form action="teste.jsp">
             <%ArrayList<Question> test = Database.getQuiz(); %>
-            <% for(Question question : test){%>
-            <h2><%=question.getQuestion() %></h2>
-            
-                <%for(String alternative: question.getAlternatives()) {%>
+            <% for (Question question : test) {%>
+            <h2><%=question.getQuestion()%></h2>
 
-                   <div class="form-control">
-                        <label class="radio">
-                            <%String i = String.valueOf(test.indexOf(question));%>
-                            <input type="radio" name="<%=i%>" value="<%=alternative%>" required/>
-                            <%=alternative%>
-                        </label>
-                    </div>
+            <%for (String alternative : question.getAlternatives()) {%>
+
+            <div class="form-control">
+                <label class="radio">
+                    <%String i = String.valueOf(test.indexOf(question));%>
+                    <input type="radio" name="<%=i%>" value="<%=alternative%>" required/>
+                    <%=alternative%>
+                </label>
+            </div>
             <%}%> 
-          <%}%> 
-           
-           <input type="submit" name="teste" value="Submit"/>
-           <input type="hidden" name="nomeUsuário" value=<%=request.getParameter("nome")%>  />
+            <%}%> 
+
+            <input type="submit" name="teste" value="Submit"/>
+            <input type="hidden" name="nomeUsuário" value=<%=request.getParameter("nome")%>  />
         </form>
         <h3>   <a href="index.jsp">Voltar</a></h3>
     </body>

@@ -10,13 +10,14 @@
 <%
     String aux = "";
     String user = request.getParameter("txtUser");
-    HttpSession sessao = request.getSession();
+
     if (request.getParameter("btnLogin") != null) {
         if (request.getParameter("txtUser") != "") {
             for (User u : Database.getUsers()) {
                 if (u.getNome().equals(user)) {
                     aux = "Entrando";
-                    sessao.setAttribute("usuarioLogado", user);
+                    session.setAttribute("usuarioLogado", user);
+
                     response.sendRedirect("home.jsp");
                 } else {
                     aux = "Usuário não encontrado";
@@ -25,7 +26,7 @@
         } else {
             aux = "Usuário vazio";
         }
-    } else if (sessao.getAttribute("usuarioLogado") != null) {
+    } else if (session.getAttribute("usuarioLogado") != null) {
         response.sendRedirect("home.jsp");
     }
 %>
@@ -33,7 +34,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="WEB-INF/jspf/header.jspf" %>
+        <%@include file="WEB-INF/jspfs/header.jspf" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login - RandomQuiz</title>
     </head>

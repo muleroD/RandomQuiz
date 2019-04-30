@@ -9,26 +9,23 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Marcelo
+ * @author Mulero
  */
 public class User {
+
     private String nome;
     public static ArrayList<User> users;
 
-    public User(String nome){
-        this.setNome(nome);
+    public User() {
+
     }
 
-    public static ArrayList<User> getUsers() {        
-        return users;
+    public User(String nome) {
+        this.setNome(nome);
     }
 
     public static void setPlayers(User u) {
         users.add(u);
-    }
-
-    User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     //métodos getters e setters
@@ -39,6 +36,4 @@ public class User {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-   
 }
