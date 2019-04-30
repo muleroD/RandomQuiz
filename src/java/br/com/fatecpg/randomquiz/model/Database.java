@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author Mulero
  */
 public class Database {
+    
+    private static int testsCount = 0;
+    private static double testsGradeSum = 0.0;
+    private static double lastGrade = 0.0;
 
     private static ArrayList<User> usuarios;
 
@@ -30,8 +34,11 @@ public class Database {
         return usuarios;
     }
 
-    public static ArrayList<Question> getQuiz() {
-        ArrayList<Question> quiz = new ArrayList<>();
+    public static ArrayList<Question> quiz;
+    
+    public static ArrayList <Question> getQuiz(){
+         quiz = new ArrayList<>();
+        
        quiz.add(new Question("Qual a velocidade da luz no vácuo em m/s ?", "299 792 458", new String[]{"301 458 678", "196 234 129", "396 128 987", "299 792 458" }));
         quiz.add(new Question("Segundo o Físico Isaac Newton, quais dessas grandezas fundamentais é diretamente proporcional à lei da Inércia ?", "Massa",  new String[]{"Massa", "Comprimento", "Tempo", "Temperatura"}));
         quiz.add(new Question("Acreditava-se que nada era capaz de fugir das forças de atração de um buraco negro, até que 1974 Stephen Hawking provou que é possível extrair informações de dentro dele por meio de que meio ?", "Radiação", new String[]{"Radiação", "Luz", "Calor", "Gravidade"}));
@@ -43,5 +50,28 @@ public class Database {
         quiz.add(new Question("Qual a temperatura que precisamos atingir para obtermos o zero absoluto em Celsius ?", "-273", new String[]{"0", "-100", "-178", "-273" }));
         quiz.add(new Question("Material utilizado por Torricelli para determinar a pressão atmosférica...", "Mercúrio", new String[]{"Alumínio", "Bronze", "Mercúrio", "Prata" }));
         return quiz;
+    }
+    
+    public static double validateTest(String userAnswers[]){
+ 
+        int count = 0;
+        for(int i=0; i<quiz.size(); i++){
+            if(quiz.get(i).getAnswer().equals(userAnswers[i])){
+                count++;
+            }
+        }
+        double grade = (double)count / (double)quiz.size();
+        Database.lastGrade = grade;
+        Database.testsGradeSum += grade;
+        Database.testsCount++;
+        return grade;
+    }
+
+   public static double getLastGrade(){
+        return Database.lastGrade;
+    }
+    
+    public static double getGradeAverage(){
+        return Database.testsGradeSum / (double)Database.testsCount;
     }
 }
