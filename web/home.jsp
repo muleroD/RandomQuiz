@@ -1,39 +1,74 @@
-<%-- 
-    Document   : index
-    Created on : 25/04/2019, 10:04:07
-    Author     : Mulero
---%>
 
+<%@page import="br.com.fatecpg.randomquiz.model.Ranquing"%>
+<%@page import="java.util.Collections"%>
+<%@page import="br.com.fatecpg.randomquiz.model.Pontuacao"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="br.com.fatecpg.randomquiz.model.Database"%>
+<%@page import="br.com.fatecpg.randomquiz.model.Question"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%
-    String usuario = "";
-    HttpSession sessao = request.getSession();
-
-    if (sessao.getAttribute("usuarioLogado") == null) {
-        response.sendRedirect("login.jsp");
-    } else {
-        usuario = sessao.getAttribute("usuarioLogado").toString();
-    }
-
-    if (request.getParameter("btnLogout") != null) {
-        response.sendRedirect("logout.jsp");
-    }
+    DecimalFormat df = new DecimalFormat("#.##");
+    DecimalFormat df2 = new DecimalFormat("0.00");
+    double lastGrade = 100.0 * Database.getLastGrade();
+    double averageGrade = 100.0 * Database.getGradeAverage();
 %>
-
 <!DOCTYPE html>
+
 <html>
     <head>
-        <%@include file="WEB-INF/jspf/header.jspf" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home - RandomQuiz</title>
+        <%@include file="WEB-INF/jspfs/head.jspf" %>
+        <title>Home</title>
     </head>
     <body>
-        <h1>Random Quiz</h1>
-        <h2>Bem vindo <%=usuario%></h2>
-
-        <!--Apresentar uma tabela com os ultimos 10 testes-->
-
-        <form><input type="submit" name="btnLogout" value="Sair"/></form>
+        <%@include file="WEB-INF/jspfs/header.jspf" %>
+        <h1>Seja Bem-Vindo ao Web Quiz </h1>
+        <h2>O Teste a seguir contém <u>10</u> perguntas na área da Ciência</h2>
+        <input type="text" id="nm" name="nome" class="form-control input-md" placeholder="Informe o seu nome aqui.." required/>
+        <% if(request.getParameter("teste") == null) {%>
+        <h2>clique <a href="teste.jsp">aqui</a> para iniciar</h2>
     </body>
+    <%}%>
+    <div class="row">
+                <div class="col-md-6">
+                    <h3>Última nota:</h3>
+                    <% if(lastGrade!=0){%>
+                        <h4><%= df.format(lastGrade)%>%</h4>
+                    <%}%>
+                    
+                </div>
+                <div class="col-md-6">
+                    <h3>Média</h3>
+                    <% if(averageGrade!=0){%>
+                        <h4><%= df.format(averageGrade)%>%</h4>
+                    <%}%>
+                </div>
+            </div>
+            <hr/>
+            <div class="table col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th id="titleTable" colspan="2"> <h3>Ranking</h3> </th>
+                        </tr>
+                        <tr>
+                            <th>Pontuação</th>
+                            <th>Jogador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            ArrayList<Pontuacao> ranking = Pontuacao.ranking;
+                            Collections.sort(ranking, new Ranquing());
+                            for (Pontuacao score : ranking) {%>
+                        <tr>
+                            <td><%= df2.format(score.getPontuacao())%></td>
+                            <td><%= score.getUser().getNome()%></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
 </html>
+
