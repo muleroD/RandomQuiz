@@ -1,10 +1,10 @@
 <%-- 
     Document   : prova
-    Created on : 26/04/2019, 10:52:41
-    Author     : User
+    Created on : 30/04/2019, 10:52:41
+    Author     : Rodrigo
 --%>
 
-<%@page import="br.com.fatecpg.randomquiz.model.Pontuacao"%>
+<%@page import="br.com.fatecpg.randomquiz.model.Ranking"%>
 <%@page import="br.com.fatecpg.randomquiz.model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.fatecpg.randomquiz.model.Database"%>
@@ -18,42 +18,20 @@
     } else {
         usuario = session.getAttribute("usuarioLogado").toString();
     }
-    
-    
-    
-    try {
-        if (request.getParameter("teste") != null) {
-            //para o quiz
-            Database.validateTest(new String[]{
-                request.getParameter("0"),
-                request.getParameter("1"),
-                request.getParameter("2"),
-                request.getParameter("3"),
-                request.getParameter("4"),
-                request.getParameter("5"),
-                request.getParameter("6"),
-                request.getParameter("7"),
-                request.getParameter("8"),
-                request.getParameter("9")
-            });
-            double pontuacaouser = Database.getLastGrade() * 10;
-            String nome = request.getParameter("nomeUsuario");
 
-            //criando jogador
-            User u = new User(nome);
-            u.setNome(nome);
+    if (request.getParameter("btnFinalizaTeste") != null) {
+        int total = 0;
 
-            //criando pontuaçao
-            Pontuacao pontuacao = new Pontuacao();
-
-            pontuacao.setPontuacao(pontuacaouser);
-            Pontuacao.ranking.add(pontuacao);
-
-            response.sendRedirect("index.jsp");
+        for (Question q : Database.getQuiz()) {
+            String resposta = request.getParameter(q.getQuestion());
+            if (resposta != null && resposta.equals(q.getAnswer())) {
+                total++;
+            }
         }
-    } catch (Exception e) {
-    }
 
+        double med = 10.0 * (total / (double) (Database.getQuiz().size()));
+        Database.getRanking().add(new Ranking(usuario, med, 7));
+    }
 %>
 <html>
     <head>
@@ -81,9 +59,9 @@
             <%}%> 
             <%}%> 
 
-            <input type="submit" name="teste" value="Submit"/>
+            <input type="submit" name="btnFinalizaTeste" value="Submit"/>
             <input type="hidden" name="nomeUsuário" value=<%=request.getParameter("nome")%>  />
         </form>
-        <h3>   <a href="index.jsp">Voltar</a></h3>
+        <h3>   <a href="home.jsp">Voltar</a></h3>
     </body>
 </html>

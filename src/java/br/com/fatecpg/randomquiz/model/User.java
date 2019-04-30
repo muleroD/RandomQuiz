@@ -20,10 +20,6 @@ public class User {
 
     }
 
-    public User(String nome) {
-        this.setNome(nome);
-    }
-
     public static void setPlayers(User u) {
         users.add(u);
     }

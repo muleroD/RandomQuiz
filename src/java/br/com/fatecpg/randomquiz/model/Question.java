@@ -44,9 +44,4 @@ public class Question {
     public void setAlternatives(String[] alternatives) {
         this.alternatives = alternatives;
     }
-
-    public boolean validaAlternatives(int i) {
-        return alternatives[i].equals(answer);
-    }
-
 }

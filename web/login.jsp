@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : 28/04/2019, 13:23:03
-    Author     : Mulero
+    Author     : Jose
 --%>
 
 <%@page import="br.com.fatecpg.randomquiz.model.User"%>
@@ -34,7 +34,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%@include file="WEB-INF/jspfs/header.jspf" %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login - RandomQuiz</title>
     </head>
@@ -43,7 +42,6 @@
 
         <form>
             Usuário: <input type="text" name="txtUser">
-
             <input type="submit" name="btnLogin" value="Entrar"/>
         </form>
 
