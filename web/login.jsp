@@ -11,7 +11,6 @@
     String aux = "";
     String user = request.getParameter("txtUser");
     HttpSession sessao = request.getSession();
-
     if (request.getParameter("btnLogin") != null) {
         if (request.getParameter("txtUser") != "") {
             for (User u : Database.getUsers()) {
@@ -29,7 +28,6 @@
     } else if (sessao.getAttribute("usuarioLogado") != null) {
         response.sendRedirect("home.jsp");
     }
-
 %>
 
 <!DOCTYPE html>
