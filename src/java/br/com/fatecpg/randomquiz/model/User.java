@@ -5,14 +5,33 @@
  */
 package br.com.fatecpg.randomquiz.model;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author Mulero
+ * @author Marcelo
  */
 public class User {
-
     private String nome;
+    public static ArrayList<User> users;
 
+    public User(String nome){
+        this.setNome(nome);
+    }
+
+    public static ArrayList<User> getUsers() {        
+        return users;
+    }
+
+    public static void setPlayers(User u) {
+        users.add(u);
+    }
+
+    User() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    //métodos getters e setters
     public String getNome() {
         return nome;
     }
@@ -21,8 +40,5 @@ public class User {
         this.nome = nome;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "nome=" + nome + '}';
-    }
+   
 }
